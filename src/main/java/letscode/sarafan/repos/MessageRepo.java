@@ -1,7 +1,11 @@
 package letscode.sarafan.repos;
 
-import letscode.sarafan.domain.Message;
-import org.springframework.data.jpa.repository.JpaRepository;
+import letscode.sarafan.domain.Messages;
+import org.springframework.data.repository.CrudRepository;
 
-public interface MessageRepo extends JpaRepository<Message, Integer> {
+import java.util.List;
+
+public interface MessageRepo extends CrudRepository<Messages, Long> {
+
+    List<Messages> findByTag(String tag);
 }
