@@ -1,19 +1,24 @@
 package letscode.sarafan.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
 import javax.persistence.*;
 
 @Entity
-@Table
-@ToString(of = {"id", "text"})
-@EqualsAndHashCode(of = {"id"})
-public class Message {
+public class Messages {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String text;
+    private String tag;
+
+
+    public Messages() {
+    }
+
+    public Messages(String text, String tag) {
+        this.text = text;
+        this.tag = tag;
+    }
 
     public Integer getId() {
         return id;
@@ -30,4 +35,13 @@ public class Message {
     public void setText(String text) {
         this.text = text;
     }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
 }
