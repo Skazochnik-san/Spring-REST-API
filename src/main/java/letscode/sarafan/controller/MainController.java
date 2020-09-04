@@ -20,12 +20,12 @@ public class MainController {
     private MessageRepo messageRepo;
 
     @GetMapping("/")
-    public ModelAndView message(Map<String, Object> model){
-        return new ModelAndView("messages", model);
+    public String message(){
+        return "messages";
     }
 
     @GetMapping("/main")
-    public ModelAndView main(@RequestParam(required = false, defaultValue = "") String filter, Map<String, Object> model){
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model){
         Iterable<Messages> messages;
 
         if(filter != null && !filter.isEmpty()){
@@ -34,25 +34,25 @@ public class MainController {
             messages = messageRepo.findAll();
         }
 
-        model.put("messagesList", messages);
+        model.addAttribute("messagesList", messages);
 
-        return new ModelAndView("main", model);
+        return "main";
     }
 
     @PostMapping("/main")
-    public ModelAndView add (
+    public String add (
             @AuthenticationPrincipal User user,
             @RequestParam String text,
-            @RequestParam String tag, Map<String, Object> model) {
+            @RequestParam String tag, Model model) {
         Messages message = new Messages(text, tag, user);
 
         messageRepo.save(message);
 
         Iterable<Messages> messages = messageRepo.findAll();
 
-        model.put("messagesList", messages);
+        model.addAttribute("messagesList", messages);
 
-        return new ModelAndView("main", model);
+        return "main";
     }
 
 }
