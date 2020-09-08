@@ -67,7 +67,16 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- mail -->
+		<!-- flyway-core -->
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>6.5.5</version>
+        </dependency>
+
+
+        <!-- mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
