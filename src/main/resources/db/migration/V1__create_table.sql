@@ -1,3 +1,8 @@
+# DROP TABLE hibernate_sequence;
+# DROP TABLE messages;
+# DROP TABLE user_role;
+# DROP TABLE usr;
+
 create table hibernate_sequence (
   next_val BIGINT
 );
@@ -28,9 +33,9 @@ create table usr (
 );
 
 alter table messages
-  add constraint FK5f19dxsguyxb310o6hn9ccmbt
+  add constraint messages_user_fk
   foreign key (user_id) references usr (id);
 
 alter table user_role
-  add constraint FKfpm8swft53ulq2hl11yplpr5
+  add constraint user_role_user_fk
   foreign key (user_id) references usr (id);
