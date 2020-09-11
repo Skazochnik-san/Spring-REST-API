@@ -14,7 +14,7 @@ create table messages (
   id BIGINT not null auto_increment primary key,
   filename varchar(255),
   tag varchar(255),
-  text varchar(255),
+  text varchar(2048),
   user_id BIGINT
 );
 
