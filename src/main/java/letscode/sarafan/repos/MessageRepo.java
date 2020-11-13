@@ -1,6 +1,6 @@
 package letscode.sarafan.repos;
 
-import letscode.sarafan.domain.Messages;
+import letscode.sarafan.Messages;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package letscode.sarafan.controller;
 
-import letscode.sarafan.domain.Role;
-import letscode.sarafan.domain.User;
+import letscode.sarafan.Role;
+import letscode.sarafan.User;
 import letscode.sarafan.service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

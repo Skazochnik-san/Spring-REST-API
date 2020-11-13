@@ -1,7 +1,7 @@
 package letscode.sarafan.service;
 
-import letscode.sarafan.domain.Role;
-import letscode.sarafan.domain.User;
+import letscode.sarafan.Role;
+import letscode.sarafan.User;
 
 import letscode.sarafan.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;

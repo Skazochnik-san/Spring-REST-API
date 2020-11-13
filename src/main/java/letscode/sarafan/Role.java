@@ -1,4 +1,4 @@
-package letscode.sarafan.domain;
+package letscode.sarafan;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,11 +1,10 @@
 package letscode.sarafan.controller;
 
-import letscode.sarafan.domain.User;
-import letscode.sarafan.domain.dto.CaptchaResponseDto;
+import letscode.sarafan.User;
+import letscode.sarafan.dto.CaptchaResponseDto;
 import letscode.sarafan.service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;

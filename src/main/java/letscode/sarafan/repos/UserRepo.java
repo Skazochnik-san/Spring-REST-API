@@ -1,6 +1,6 @@
 package letscode.sarafan.repos;
 
-import letscode.sarafan.domain.User;
+import letscode.sarafan.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User, Long> {

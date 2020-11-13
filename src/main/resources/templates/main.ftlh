@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <div class="custom-file">
-                    <input type="file" name="file" id="customFile">
+                    <input type="file" name="file" id="customFile" />
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
             </div>
@@ -53,7 +53,7 @@
     <#list messagesList as message>
         <div class="card my-3">
             <#if message.filename??>
-                <img src="/img/${message.filename!}" class="card-img-top">
+                <img src="/img/${message.filename!}" class="card-img-top" />
             </#if>
         <div class="m-2">
             <span>${message.text}</span>
