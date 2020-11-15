@@ -1,7 +1,7 @@
 package letscode.sarafan.service;
 
-import letscode.sarafan.Role;
-import letscode.sarafan.User;
+import letscode.sarafan.domain.Role;
+import letscode.sarafan.domain.User;
 
 import letscode.sarafan.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,5 +129,17 @@ public class UserSevice implements UserDetailsService{
         if (isEmailChanged) {
             sendMessage(user);
         }
+    }
+
+    public void subscribe(User currentUser, User user) {
+        user.getSubscribers().add(currentUser);
+
+        userRepo.save(user);
+    }
+
+    public void unsubscribe(User currentUser, User user) {
+        user.getSubscribers().remove(currentUser);
+
+        userRepo.save(user);
     }
 }

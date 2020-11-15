@@ -1,7 +1,7 @@
 package letscode.sarafan.controller;
 
-import letscode.sarafan.Messages;
-import letscode.sarafan.User;
+import letscode.sarafan.domain.Messages;
+import letscode.sarafan.domain.User;
 import letscode.sarafan.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -109,6 +109,10 @@ public class MainController {
             ) {
         Set<Messages> messages = user.getMessages();
 
+        model.addAttribute("userChannel", user);
+        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
+        model.addAttribute("subscribersCount", user.getSubscribers().size());
+        model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
         model.addAttribute("messagesList", messages);
         model.addAttribute("message", message);
         model.addAttribute("isCurrentUser", currentUser.equals(user));

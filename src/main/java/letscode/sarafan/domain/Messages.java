@@ -1,4 +1,4 @@
-package letscode.sarafan;
+package letscode.sarafan.domain;
 
 import org.hibernate.validator.constraints.Length;
 

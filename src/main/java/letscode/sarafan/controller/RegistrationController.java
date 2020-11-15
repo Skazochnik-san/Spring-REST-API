@@ -1,7 +1,7 @@
 package letscode.sarafan.controller;
 
-import letscode.sarafan.User;
-import letscode.sarafan.dto.CaptchaResponseDto;
+import letscode.sarafan.domain.User;
+import letscode.sarafan.domain.dto.CaptchaResponseDto;
 import letscode.sarafan.service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

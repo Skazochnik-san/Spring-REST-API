@@ -1,4 +1,4 @@
-package letscode.sarafan.dto;
+package letscode.sarafan.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
