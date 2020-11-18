@@ -22,7 +22,7 @@
             placeholder="Password"/>
         <#if passwordError??>
             <div class="invalid-feedback">
-                ${passwordError!}
+                ${passwordError}
             </div>
         </#if>
         </div>
