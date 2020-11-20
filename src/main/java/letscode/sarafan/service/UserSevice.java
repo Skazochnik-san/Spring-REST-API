@@ -56,7 +56,7 @@ public class UserSevice implements UserDetailsService{
 
         userRepo.save(user);
 
-//        sendMessage(user);
+        sendMessage(user);
 
         return true;
     }
