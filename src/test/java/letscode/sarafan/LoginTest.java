@@ -1,7 +1,7 @@
 package letscode.sarafan;
 
 
-import letscode.sarafan.controller.MainController;
+import letscode.sarafan.controller.MessageController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class LoginTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
-    private MainController controller;
+    private MessageController controller;
 
     @Test
     public void contextLoads() throws Exception {

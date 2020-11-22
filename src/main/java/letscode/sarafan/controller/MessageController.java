@@ -3,6 +3,7 @@ package letscode.sarafan.controller;
 import letscode.sarafan.domain.Messages;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.repos.MessageRepo;
+import letscode.sarafan.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -29,10 +30,13 @@ import java.util.UUID;
 
 
 @Controller
-public class MainController {
+public class MessageController {
 
     @Autowired
     private MessageRepo messageRepo;
+
+    @Autowired
+    private MessageService messageService;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -48,13 +52,7 @@ public class MainController {
             Model model,
             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ){
-        Page<Messages> page;
-
-        if(filter != null && !filter.isEmpty()){
-            page = messageRepo.findByTag(filter, pageable);
-        } else {
-            page = messageRepo.findAll(pageable);
-        }
+        Page<Messages> page = messageService.messageList(pageable, filter);
 
         model.addAttribute("page", page);
         model.addAttribute("url", "/main");
@@ -69,7 +67,9 @@ public class MainController {
             @Valid Messages message,
             BindingResult bindingResult,
             Model model,
-            @RequestParam("file")MultipartFile file) throws IOException {
+            @RequestParam("file")MultipartFile file,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+    ) throws IOException {
 
         message.setAuthor(user);
 
@@ -86,9 +86,11 @@ public class MainController {
             messageRepo.save(message);
         }
 
-        Iterable<Messages> messages = messageRepo.findAll();
+        model.addAttribute("url", "/main");
 
-        model.addAttribute("messagesList", messages);
+        Page<Messages> page = this.messageService.messageList(pageable, "");
+
+        model.addAttribute("page", page);
 
         return "main";
     }
@@ -110,22 +112,24 @@ public class MainController {
         }
     }
 
-    @GetMapping("/user-messages/{user}")
+    @GetMapping("/user-messages/{author}")
     public String userMessages(
             @AuthenticationPrincipal User currentUser,
-            @PathVariable User user,
+            @PathVariable User author,
             Model model,
-            @RequestParam(required = false) Messages message
+            @RequestParam(required = false) Messages message,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
             ) {
-        Set<Messages> messages = user.getMessages();
+        Page<Messages> page = messageService.messageListForUser(pageable, currentUser, author);
 
-        model.addAttribute("userChannel", user);
-        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
-        model.addAttribute("subscribersCount", user.getSubscribers().size());
-        model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
-        model.addAttribute("messagesList", messages);
+        model.addAttribute("userChannel", author);
+        model.addAttribute("subscriptionsCount", author.getSubscriptions().size());
+        model.addAttribute("subscribersCount", author.getSubscribers().size());
+        model.addAttribute("isSubscriber", author.getSubscribers().contains(currentUser));
+        model.addAttribute("page", page);
         model.addAttribute("message", message);
-        model.addAttribute("isCurrentUser", currentUser.equals(user));
+        model.addAttribute("isCurrentUser", currentUser.equals(author));
+        model.addAttribute("url", "/user-messages/" + author.getId());
 
         return "userMessages";
     }
